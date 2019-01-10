@@ -10,6 +10,9 @@
     <modules>
         <module>j360-core</module>
         <module>j360-base</module>
+        <module>j360-common</module>
+        <module>j360-boot-starts</module>
+        <module>j360-boot-starts-web</module>
     </modules>
 
     <distributionManagement>

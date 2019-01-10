@@ -5,7 +5,7 @@
 [![Build Status](https://travis-ci.org/xuminwlt/j360-framework-parent.svg?branch=master)](https://travis-ci.org/xuminwlt/j360-framework-parent)
 [![](https://jitpack.io/v/xuminwlt/j360-framework-parent.svg)](https://jitpack.io/#xuminwlt/j360-framework-parent)
 
-## 使用
+## How to Use
 
 使用github repo
 ```
@@ -40,4 +40,14 @@
 ```
 
 ## Modules
+
+- j360-base: 二方Base库,用于同一相关规范,二方包精简去除外部无关依赖
+- j360-core: 核心lib: 工具包, 依赖vjtool
+- j360-common: 通用类, 用于简化一方工程构建和优化程序, 定位三方依赖库
+- j360-boot-starts: TODO, 快速构建Spring Boot Configuration
+- j360-boot-starts-web: TODO, 进一步快速构建Spring Boot Web Configuration
+ 
+## Samples
+
+
 

@@ -1,4 +1,4 @@
-package me.j360.framework.base.exception;
+package me.j360.framework.common.exception;
 
 import com.vip.vjtools.vjkit.base.ExceptionUtil;
 import lombok.ToString;
