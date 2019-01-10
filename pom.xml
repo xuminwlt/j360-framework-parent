@@ -13,6 +13,7 @@
         <module>j360-common</module>
         <module>j360-boot-starts</module>
         <module>j360-boot-starts-web</module>
+        <module>j360-bom</module>
     </modules>
 
     <distributionManagement>
