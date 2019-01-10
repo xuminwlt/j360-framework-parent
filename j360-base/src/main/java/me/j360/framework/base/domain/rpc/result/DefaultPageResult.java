@@ -1,7 +1,6 @@
 package me.j360.framework.base.domain.rpc.result;
 
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
 import me.j360.framework.base.constant.BaseErrorCode;
 
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ import java.util.Objects;
  * Date: 16/8/19 下午3:01
  * 说明：
  */
-@Slf4j
 public class DefaultPageResult<D> extends BaseResultSupport {
 
     @Getter
