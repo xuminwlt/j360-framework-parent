@@ -73,13 +73,13 @@
                     <artifactId>site-maven-plugin</artifactId>
                     <version>0.11</version>
                     <configuration>
-                        <message>Maven artifacts for ${project.version}</message>  <!-- git commit message -->
-                        <noJekyll>true</noJekyll>                                  <!-- disable webpage processing -->
-                        <outputDirectory>/Users/min_xu/.m2/github-repo/</outputDirectory> <!-- matches distribution management repository url above -->
-                        <branch>refs/heads/master</branch>                       <!-- remote branch name -->
+                        <message>Maven artifacts for ${project.version}</message>
+                        <noJekyll>true</noJekyll>
+                        <outputDirectory>/Users/min_xu/.m2/github-repo/</outputDirectory>
+                        <branch>refs/heads/master</branch>
                         <includes><include>**/*</include></includes>
-                        <repositoryName>github-repo</repositoryName>      <!-- github repo name -->
-                        <repositoryOwner>xuminwlt</repositoryOwner>    <!-- github username  -->
+                        <repositoryName>github-repo</repositoryName>
+                        <repositoryOwner>xuminwlt</repositoryOwner>
                     </configuration>
                     <executions>
                         <!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
@@ -94,8 +94,18 @@
             </plugins>
         </pluginManagement>
 
-
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <compilerVersion>1.8</compilerVersion>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
             <plugin>
                 <artifactId>maven-deploy-plugin</artifactId>
             </plugin>
