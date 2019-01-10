@@ -1,11 +1,6 @@
 package me.j360.framework.base.constant;
 
-/**
- * Package: me.j360.dubbo.base.api
- * User: min_xu
- * Date: 2017/3/15 下午8:04
- * 说明：
- */
+
 public abstract class BaseErrorCode {
 
     public static int SUCCESS_CODE = 0;

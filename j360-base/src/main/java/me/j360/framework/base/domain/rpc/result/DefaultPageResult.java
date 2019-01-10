@@ -7,12 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Package: com.app.api.base
- * User: min_xu
- * Date: 16/8/19 下午3:01
- * 说明：
- */
+
 public class DefaultPageResult<D> extends BaseResultSupport {
 
     @Getter
