@@ -8,7 +8,7 @@ import lombok.Setter;
  * @date: 2019/1/10 6:32 PM
  * 说明：
  */
-public abstract class BaseSessionUser implements SessionUser{
+public abstract class BaseSessionUser implements SessionUser {
 
     @Getter
     @Setter
