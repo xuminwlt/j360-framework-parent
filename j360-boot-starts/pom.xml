@@ -11,5 +11,11 @@
 
     <artifactId>j360-boot-starts</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>me.j360.framework</groupId>
+            <artifactId>j360-common</artifactId>
+            <version>1.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>
