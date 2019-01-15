@@ -4,6 +4,8 @@ import lombok.Setter;
 import me.j360.framework.common.web.context.SessionUser;
 import org.redisson.api.RedissonClient;
 
+import java.util.Set;
+
 /**
  * @author: min_xu
  * @date: 2019/1/11 5:50 PM
@@ -21,6 +23,11 @@ public class RedissonSessionStorageDAO extends AbstractSessionStorageDAO {
 
     @Override
     public SessionUser get(String sessionId) {
+        return null;
+    }
+
+    @Override
+    public Set<String> roles(Long principal) {
         return null;
     }
 }
