@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * @author: min_xu
  * @date: 2019/1/11 10:31 AM
- * 说明：
+ * 说明：无状态配置
  */
 
 @Slf4j
