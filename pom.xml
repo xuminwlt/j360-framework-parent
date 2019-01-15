@@ -5,7 +5,7 @@
     <groupId>me.j360.framework</groupId>
     <artifactId>j360-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.1</version>
+    <version>1.2-SNAPSHOT</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
