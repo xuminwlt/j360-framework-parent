@@ -5,6 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.vip.vjtools.vjkit.collection.ArrayUtil;
+import lombok.Setter;
 import me.j360.framework.base.constant.DefaultErrorCode;
 import me.j360.framework.base.exception.ServiceException;
 import me.j360.framework.boot.shiro.dao.SessionStorageDAO;
@@ -30,10 +31,13 @@ public class JwtSignature {
     private static String Authorization = "Authorization";
     private static String CID = "cid";
     private static String CODE = "code";
+
     //Auth 定义jwt内容
     public static final String JWT_AUD_GUEST = "guest";
     public static final String JWT_AUD_USET = "user";
-    public static final String JWT_ISSUER = "J360";
+
+    @Setter
+    public String JWT_ISSUER;
 
     private Algorithm algorithm;
     private SessionStorageDAO sessionStorageDAO;

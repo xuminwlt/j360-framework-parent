@@ -56,7 +56,6 @@ public abstract class AbstractSessionShiroConfiguration {
     @Bean
     public Realm realm() {
         SessionRealm realm = new SessionRealm(sessionStorageDAO());
-        realm.setCommonSalt("j360");
         realm.setCredentialsMatcher(credentialsMatcher());
         return realm;
     }
