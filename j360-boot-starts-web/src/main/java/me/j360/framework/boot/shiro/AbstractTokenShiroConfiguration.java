@@ -1,6 +1,5 @@
 package me.j360.framework.boot.shiro;
 
-import com.auth0.jwt.algorithms.Algorithm;
 import lombok.extern.slf4j.Slf4j;
 import me.j360.framework.boot.shiro.dao.SessionStorageDAO;
 import me.j360.framework.boot.shiro.filter.TokenAuthcFilter;
@@ -13,7 +12,6 @@ import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Profile;
 
 import javax.servlet.Filter;
 import java.util.Map;
@@ -25,15 +23,10 @@ import java.util.Map;
  */
 
 @Slf4j
-@Profile("token")
 public abstract class AbstractTokenShiroConfiguration {
 
     @Autowired
     protected SecurityManager securityManager;
-    @Autowired
-    public Algorithm algorithm;
-    @Autowired
-    public JwtSignature jwtSignature;
 
     @Bean
     public ShiroFilterChainDefinition shiroFilterChainDefinition() {
@@ -69,21 +62,10 @@ public abstract class AbstractTokenShiroConfiguration {
         return securityManager;
     }
 
-
-    @Bean
-    public Algorithm algorithm() {
-        Algorithm algorithm = Algorithm.HMAC256("secret");
-        return algorithm;
-    }
-
-    @Bean
-    public JwtSignature jwtSignature() {
-        JwtSignature jwtSignature = new JwtSignature(algorithm);
-        return jwtSignature;
-    }
+    public abstract JwtSignature jwtSignature();
 
     public TokenContextFilter tokenContextFilter() {
-        TokenContextFilter context = new TokenContextFilter(jwtSignature);
+        TokenContextFilter context = new TokenContextFilter(jwtSignature());
         return context;
     }
 

@@ -3,6 +3,7 @@ package me.j360.framework.boot.shiro;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.vip.vjtools.vjkit.collection.ArrayUtil;
 import lombok.Setter;
@@ -125,6 +126,16 @@ public class JwtSignature {
                 .nonce(jwt.getClaim("nonce").asLong())
                 .expiresAt(jwt.getExpiresAt())
                 .build();
+    }
+
+
+    public boolean checkJwt(String token) {
+        try {
+            JwtUtil.verify(this.algorithm, JWT_ISSUER, token);
+            return true;
+        } catch (JWTVerificationException e) {
+            return false;
+        }
     }
 
     public String signature(JwtUtil.JwtOptions options) {

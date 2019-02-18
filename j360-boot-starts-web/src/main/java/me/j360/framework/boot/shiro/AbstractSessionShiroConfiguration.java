@@ -17,7 +17,6 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -35,7 +34,6 @@ import java.util.Map;
  */
 
 @Slf4j
-@Configuration
 public abstract class AbstractSessionShiroConfiguration {
 
     //redirect to error from shiro AuthorizationException

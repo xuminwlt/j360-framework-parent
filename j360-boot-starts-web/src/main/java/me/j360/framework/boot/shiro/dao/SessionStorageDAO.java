@@ -1,7 +1,6 @@
 package me.j360.framework.boot.shiro.dao;
 
-import me.j360.framework.common.web.context.BaseSessionUser;
-import me.j360.framework.common.web.context.DefaultSessionUser;
+import me.j360.framework.common.web.context.SessionUser;
 
 import java.util.Set;
 
@@ -12,9 +11,9 @@ import java.util.Set;
  */
 public interface SessionStorageDAO {
 
-    void save(BaseSessionUser sessionUser);
+    void save(SessionUser sessionUser);
 
-    DefaultSessionUser get(String sessionId);
+    SessionUser get(String sessionId);
 
     Set<String> roles(Long principal);
 }

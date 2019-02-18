@@ -56,7 +56,7 @@ public class TokenAuthcFilter extends AccessControlFilter {
             //Invalid common signature/claims
             throw new ServiceException(DefaultErrorCode.AUTH_ACCESS_SESSION_ERROR, exception);
         }
-        DefaultSessionUser sessionUser = sessionStorageDAO.get(jwtOptions.getSubject());
+        DefaultSessionUser sessionUser = (DefaultSessionUser) sessionStorageDAO.get(jwtOptions.getSubject());
         if (Objects.isNull(sessionUser)) {
             throw BizException.newBizException(DefaultErrorCode.AUTH_ACCESS_SESSION_ERROR);
         }
