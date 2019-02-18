@@ -3,7 +3,7 @@ package me.j360.framework.boot.shiro.realm;
 import me.j360.framework.boot.shiro.JwtSignature;
 import me.j360.framework.boot.shiro.dao.SessionStorageDAO;
 import me.j360.framework.boot.shiro.token.SessionAuthcToken;
-import me.j360.framework.common.web.context.DefaultSessionUser;
+import me.j360.framework.common.web.context.DefaultJwtSessionUser;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -40,7 +40,7 @@ public class TokenRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String sessionId = (String) principals.getPrimaryPrincipal();
-        DefaultSessionUser sessionUser = (DefaultSessionUser) sessionStorageDAO.get(sessionId);
+        DefaultJwtSessionUser sessionUser = (DefaultJwtSessionUser) sessionStorageDAO.get(sessionId);
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         if (Objects.nonNull(sessionUser)) {
             authorizationInfo.setRoles(sessionUser.getRoles());
@@ -52,7 +52,7 @@ public class TokenRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String sessionId = (String) token.getPrincipal();
-        //DefaultSessionUser sessionUser = (DefaultSessionUser) sessionStorageDAO.get(sessionId);
+        //DefaultJwtSessionUser sessionUser = (DefaultJwtSessionUser) sessionStorageDAO.get(sessionId);
         String sign = (String) token.getCredentials();
         //no more verify
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(

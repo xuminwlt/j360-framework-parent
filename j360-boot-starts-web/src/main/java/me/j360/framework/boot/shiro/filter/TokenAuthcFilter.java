@@ -7,7 +7,9 @@ import me.j360.framework.base.exception.ServiceException;
 import me.j360.framework.boot.shiro.JwtSignature;
 import me.j360.framework.boot.shiro.dao.SessionStorageDAO;
 import me.j360.framework.boot.shiro.token.SessionAuthcToken;
+import me.j360.framework.common.exception.BizException;
 import me.j360.framework.common.util.JwtUtil;
+import me.j360.framework.common.web.context.DefaultJwtSessionUser;
 import me.j360.framework.common.web.context.DefaultSessionUser;
 import me.j360.framework.common.web.context.SessionContext;
 import org.apache.shiro.authc.AuthenticationException;
@@ -52,18 +54,17 @@ public class TokenAuthcFilter extends AccessControlFilter {
             jwtOptions = jwtSignature.decode(token);
         } catch (JWTVerificationException exception){
             //Invalid common signature/claims
-            log.debug("TokenAuthcFilte={}", token);
             throw new ServiceException(DefaultErrorCode.AUTH_ACCESS_SESSION_ERROR, exception);
         }
-
-        DefaultSessionUser sessionUser = (DefaultSessionUser) sessionStorageDAO.get(jwtOptions.getSubject());
-        //session timeout
+        DefaultSessionUser sessionUser = sessionStorageDAO.get(jwtOptions.getSubject());
         if (Objects.isNull(sessionUser)) {
-            SessionContext.setSessionUser(sessionUser);
-            //throw BizException.newBizException(DefaultErrorCode.AUTH_ACCESS_SESSION_ERROR);
+            throw BizException.newBizException(DefaultErrorCode.AUTH_ACCESS_SESSION_ERROR);
         }
+        DefaultJwtSessionUser jwtSessionUser = DefaultJwtSessionUser.builder()
+                .jwt(jwtOptions.getSignature())
+                .build();
 
-        //custom signature
+        SessionContext.setSessionUser(jwtSessionUser);
         SessionAuthcToken sessionAuthcToken = new SessionAuthcToken(jwtOptions.getSubject(), jwtOptions.getSubject());
         try {
             Subject subject = getSubject(request, response);

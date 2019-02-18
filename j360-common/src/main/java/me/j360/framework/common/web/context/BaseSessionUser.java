@@ -10,9 +10,9 @@ import lombok.Setter;
  */
 public abstract class BaseSessionUser implements SessionUser {
 
-    @Getter
-    @Setter
-    private BaseAgent agent;
+    protected abstract void setAgent(BaseAgent agent);
+    protected abstract BaseAgent getAgent();
+
     @Getter
     @Setter
     private Long uid;

@@ -6,7 +6,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import lombok.Builder;
 import lombok.Data;
-import me.j360.framework.common.web.context.DefaultSessionUser;
+import me.j360.framework.common.web.context.DefaultJwtSessionUser;
 
 import java.util.Date;
 
@@ -17,8 +17,8 @@ import java.util.Date;
  */
 public class JwtUtil {
 
-    public static DefaultSessionUser createSessionOnce(String token) {
-        return DefaultSessionUser.builder().jwt(token).build();
+    public static DefaultJwtSessionUser createSessionOnce(String token) {
+        return DefaultJwtSessionUser.builder().jwt(token).build();
     }
 
     public static DecodedJWT verify(Algorithm algorithm, String issue, String token) {

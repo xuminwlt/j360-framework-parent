@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import me.j360.framework.boot.shiro.dao.SessionStorageDAO;
 import me.j360.framework.boot.shiro.filter.TokenAuthcFilter;
 import me.j360.framework.boot.shiro.filter.TokenContextFilter;
-import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -15,13 +14,8 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
-import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.Filter;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -33,17 +27,6 @@ import java.util.Map;
 @Slf4j
 @Profile("token")
 public abstract class AbstractTokenShiroConfiguration {
-
-    @ExceptionHandler(AuthorizationException.class)
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public String handleException(AuthorizationException e, Model model) {
-        log.info("AuthorizationException was thrown", e);
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("status", HttpStatus.FORBIDDEN.value());
-        map.put("message", "No message available");
-        model.addAttribute("errors", map);
-        return "error";
-    }
 
     @Autowired
     protected SecurityManager securityManager;
