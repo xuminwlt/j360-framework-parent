@@ -26,6 +26,16 @@
             <artifactId>redisson-spring-boot-starter</artifactId>
         </dependency>
 
+        <!---->
+        <!-- mybatis -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+        </dependency>
         <!--rocketMQ-->
         <dependency>
             <groupId>org.apache.rocketmq</groupId>

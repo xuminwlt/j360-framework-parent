@@ -14,7 +14,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.stereotype.Component;
 
 import javax.validation.ConstraintViolationException;
 import java.util.Arrays;
@@ -31,7 +30,6 @@ import java.util.Set;
  **/
 @Slf4j
 @Aspect
-@Component
 public abstract class AbstractServiceAspect {
 
     //用于读写后期方法的日志收集功能

@@ -46,6 +46,9 @@
     <properties>
         <!-- github server corresponds to entry in ~/.m2/settings.xml -->
         <github.global.server>github</github.global.server>
+        <org.mybatis.version>3.4.1</org.mybatis.version>
+        <org.mybatis.spring.version>1.3.0</org.mybatis.spring.version>
+
     </properties>
 
     <dependencyManagement>
@@ -115,6 +118,18 @@
                 <groupId>org.rocketmq.spring.boot</groupId>
                 <artifactId>rocketmq-spring-boot-starter</artifactId>
                 <version>1.0.0.RELEASE</version>
+            </dependency>
+
+            <!-- mybatis -->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${org.mybatis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${org.mybatis.spring.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

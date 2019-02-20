@@ -3,7 +3,9 @@ package me.j360.framework.common.util;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import ma.glasnost.orika.metadata.Type;
+import me.j360.framework.base.domain.BaseDO;
 import me.j360.framework.base.domain.model.BaseLongID;
+import me.j360.framework.base.domain.model.BaseModel;
 import me.j360.framework.common.pool.DefaultExecutor;
 import me.j360.framework.core.kit.mapper.orika.BeanMapper;
 import org.apache.commons.collections4.CollectionUtils;
@@ -13,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -187,5 +190,39 @@ public class ModelUtil {
             return String.format(format, s);
         }).collect(Collectors.toList());
         return formatList.toArray(new String[formatList.size()]);
+    }
+
+
+    /*************
+     * 通用的转化类
+     *
+     *
+     List<AuthorDto> authorDtos = ModelUtil.createDtos(authorDOs, (t) -> {
+         return ModelConvertUtils.createAuthorDto(t);
+     });
+
+     public static AuthorDto createAuthorDto(AuthorDO authorDO) {
+        AuthorDto dto = null;
+        if (Objects.nonNull(authorDO)) {
+            dto = new AuthorDto();
+            dto.setId(authorDO.getId());
+        }
+        return dto;
+     }
+     * @param dos
+     * @param function
+     * @param <R>
+     * @param <T>
+     * @return
+     */
+    public static <R extends BaseDO, T extends BaseModel> List<R> createDtos(List<T> dos, Function<T, R> function) {
+        if (Objects.nonNull(dos)) {
+            final List<R> dtos = Lists.newArrayListWithExpectedSize(dos.size());
+            dos.stream().forEach(en -> {
+                dtos.add(function.apply(en));
+            });
+            return dtos;
+        }
+        return null;
     }
 }
