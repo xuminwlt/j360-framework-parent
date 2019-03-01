@@ -14,21 +14,21 @@ public interface BaseDao<M extends BaseModel<ID>, ID extends Serializable, Q ext
      *
      * @param m
      */
-    void add(M m);
+    int add(M m);
 
     /**
      * 删除
      *
      * @param m
      */
-    void delete(M m);
+    int delete(M m);
 
     /**
      * 更新
      *
      * @param m
      */
-    void update(M m);
+    int update(M m);
 
     /**
      * 获取
@@ -53,7 +53,6 @@ public interface BaseDao<M extends BaseModel<ID>, ID extends Serializable, Q ext
      * @return
      */
     List<M> query(Q query);
-
 
     /**
      * 获取Long型统计数据

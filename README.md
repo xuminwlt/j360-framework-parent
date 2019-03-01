@@ -39,6 +39,23 @@
 </dependency>
 ```
 
+或者使用私服 maven:deploy
+```
+<distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <name>Packaging Release Repository</name>
+            <url>http://xxx.xxx.xxx.xxx/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus</id>
+            <name>Packaging Snapshot Repository</name>
+            <url>http://xxx.xxx.xxx.xxx/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+```
+
 ## Modules
 
 - j360-base: 二方Base库,用于同一相关规范,二方包精简去除外部无关依赖
