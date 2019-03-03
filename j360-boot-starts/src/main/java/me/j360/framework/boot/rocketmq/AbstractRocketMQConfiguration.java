@@ -21,7 +21,7 @@ public abstract class AbstractRocketMQConfiguration {
     @Bean
     public RocketMQProducerTemplate rocketMQProducerTemplate() throws MQClientException {
         RocketMQProducerTemplate producer = new RocketMQProducerTemplate();
-        producer.setProducerGroup(rocketMQProperties.getProducer().getGroup());
+        producer.setProducerGroup(rocketMQProperties.getProducer().getGroup() + "-Template");
         producer.setTimeOut(rocketMQProperties.getProducer().getSendMsgTimeout());
         producer.setOrderlyMessage(true);
         producer.setMessageClass(String.class);
