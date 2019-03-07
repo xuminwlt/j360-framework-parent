@@ -13,12 +13,12 @@ public class WebSessionUser extends BaseSessionUser {
     private NavigatorAgent agent;
 
     @Override
-    protected void setAgent(BaseAgent agent) {
+    public void setAgent(BaseAgent agent) {
         this.agent = (NavigatorAgent) agent;
     }
 
     @Override
-    protected BaseAgent getAgent() {
+    public BaseAgent getAgent() {
         return agent;
     }
 }

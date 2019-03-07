@@ -14,7 +14,7 @@ public class DefaultSessionUser extends BaseSessionUser {
     protected NativeAgent agent;
 
     @Override
-    protected void setAgent(BaseAgent agent) {
+    public void setAgent(BaseAgent agent) {
         this.agent = (NativeAgent) agent;
     }
 }

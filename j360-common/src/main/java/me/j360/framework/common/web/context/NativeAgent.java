@@ -16,6 +16,8 @@ public class NativeAgent extends BaseAgent {
     private Integer build;
     private String os_v;
     private String app_v;
+    private String c_model;
+    private String cid;
     private String net;
     private String channel;
 
