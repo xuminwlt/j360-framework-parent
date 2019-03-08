@@ -1,6 +1,5 @@
 package me.j360.framework.common.web.context;
 
-import lombok.Builder;
 import lombok.Data;
 
 import java.util.Set;
@@ -11,7 +10,6 @@ import java.util.Set;
  * 说明：
  */
 
-@Builder
 @Data
 public class DefaultJwtSessionUser extends DefaultSessionUser {
 

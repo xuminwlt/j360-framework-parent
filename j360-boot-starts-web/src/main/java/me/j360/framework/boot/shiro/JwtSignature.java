@@ -152,10 +152,8 @@ public class JwtSignature {
 
     //create Session User
     private SessionUser createSessionUser(String jwt, String cid, Long uid, String sessionId) {
-        DefaultJwtSessionUser sessionUser = DefaultJwtSessionUser.builder()
-                .jwt(jwt)
-                .build();
-
+        DefaultJwtSessionUser sessionUser = new DefaultJwtSessionUser();
+        sessionUser.setJwt(jwt);
         sessionUser.setCid(cid);
         sessionUser.setUid(uid);
         sessionUser.setSessionId(sessionId);

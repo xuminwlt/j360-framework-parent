@@ -18,7 +18,9 @@ import java.util.Date;
 public class JwtUtil {
 
     public static DefaultJwtSessionUser createSessionOnce(String token) {
-        return DefaultJwtSessionUser.builder().jwt(token).build();
+        DefaultJwtSessionUser sessionUser = new DefaultJwtSessionUser();
+        sessionUser.setJwt(token);
+        return sessionUser;
     }
 
     public static DecodedJWT verify(Algorithm algorithm, String issue, String token) {

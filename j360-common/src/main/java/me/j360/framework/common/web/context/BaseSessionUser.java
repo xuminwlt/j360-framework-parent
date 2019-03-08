@@ -15,11 +15,11 @@ public abstract class BaseSessionUser implements SessionUser {
 
     @Getter
     @Setter
-    private Long uid;
+    protected Long uid;
     @Getter
     @Setter
-    private String cid;
+    protected String cid;
     @Getter
     @Setter
-    private String sessionId;
+    protected String sessionId;
 }

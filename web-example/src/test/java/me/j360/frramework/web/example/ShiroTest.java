@@ -27,7 +27,7 @@ public class ShiroTest {
     private RedissonSessionStorageDAO sessionStorageDAO;
     @Test
     public void testEncode() {
-        String token = jwtSignature.createUser("111", "uuid1");
+        String token = jwtSignature.createUser("111", "uuid2");
         System.out.println("\n------------------");
         System.out.println(token);
         System.out.println("------------------");
@@ -35,7 +35,7 @@ public class ShiroTest {
 
     @Test
     public void testDecode() {
-        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJ1c2VyIiwic3ViIjoidXVpZDEiLCJpc3MiOiJqMzYwLm1lIiwiZXhwIjoxNTgzNjM5NjQyLCJpYXQiOjE1NTIwMTcyNDIsIm5vbmNlIjoxNTUyMDE3MjQyMzY4LCJqdGkiOiIxMTEifQ.X52IKdCprh79MMiutFpVr_GinhfPz8LTLDR-6-Flcuk";
+        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJ1c2VyIiwic3ViIjoidXVpZDIiLCJpc3MiOiJqMzYwLm1lIiwiZXhwIjoxNTgzNjQ2Nzk0LCJpYXQiOjE1NTIwMjQzOTQsIm5vbmNlIjoxNTUyMDI0Mzk0NjAwLCJqdGkiOiIxMTEifQ.bLJu7dss2BwkyOEtk7CKIxHKtkQzUOaRXLJySRnzX18";
         JwtUtil.JwtOptions options = jwtSignature.decode(token);
         System.out.println("\n------------------");
         System.out.println(options);
@@ -45,7 +45,7 @@ public class ShiroTest {
     @Test
     public void testSaveSessionUser() {
         DefaultSessionUser sessionUser = new DefaultSessionUser();
-        sessionUser.setSessionId("uuid1");
+        sessionUser.setSessionId("uuid2");
         sessionUser.setUid(3L);
         sessionUser.setCid("111");
         sessionStorageDAO.save(sessionUser);
@@ -53,7 +53,7 @@ public class ShiroTest {
 
     @Test
     public void testGetSessionUser() {
-        DefaultSessionUser sessionUser = (DefaultSessionUser) sessionStorageDAO.get("uuid1");
+        DefaultSessionUser sessionUser = (DefaultSessionUser) sessionStorageDAO.get("uuid2");
         System.out.println("\n------------------");
         System.out.println(String.format("%s, %s, %s", sessionUser.getSessionId(), sessionUser.getUid(), sessionUser.getCid()));
         System.out.println("------------------");

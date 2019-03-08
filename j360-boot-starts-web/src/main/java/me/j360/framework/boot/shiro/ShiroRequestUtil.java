@@ -9,9 +9,9 @@ public class ShiroRequestUtil {
 
     /**
      * 获取请求的客户端及设备信息
-     * Client-Agent: ISSUE/3.1.0/1602/iOS/7.1/iPhone 5s (A1457/A1518/A1528/A1530)/7EAB70B1-624F-463A-943C-E7FF235A9A0C/wifi/iOS
+     * Client-Agent: ISSUE/3.1.0/1602/2/7.1/iPhone 5s (A1457/A1518/A1528/A1530)/7EAB70B1-624F-463A-943C-E7FF235A9A0C/wifi/iOS
      *
-     * 在传递参数的时候setOsNumber安卓=1，苹果=iOS
+     * 在传递参数的时候setOsNumber安卓=1，苹果=2
      * wifi 3g 4g
      * channel = ios、android、xiaomi、huawei
      */

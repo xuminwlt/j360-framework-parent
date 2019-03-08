@@ -9,7 +9,6 @@ import me.j360.framework.boot.shiro.dao.SessionStorageDAO;
 import me.j360.framework.boot.shiro.token.SessionAuthcToken;
 import me.j360.framework.common.exception.BizException;
 import me.j360.framework.common.util.JwtUtil;
-import me.j360.framework.common.web.context.DefaultJwtSessionUser;
 import me.j360.framework.common.web.context.DefaultSessionUser;
 import me.j360.framework.common.web.context.SessionContext;
 import org.apache.commons.lang3.StringUtils;
@@ -61,11 +60,7 @@ public class TokenAuthcFilter extends AccessControlFilter {
         if (Objects.isNull(sessionUser)) {
             throw BizException.newBizException(DefaultErrorCode.AUTH_ACCESS_SESSION_ERROR);
         }
-        DefaultJwtSessionUser jwtSessionUser = DefaultJwtSessionUser.builder()
-                .jwt(jwtOptions.getSignature())
-                .build();
-
-        SessionContext.setSessionUser(jwtSessionUser);
+        SessionContext.setSessionUser(sessionUser);
         SessionAuthcToken sessionAuthcToken = new SessionAuthcToken(jwtOptions.getSubject(), jwtOptions.getSubject());
         try {
             Subject subject = getSubject(request, response);
