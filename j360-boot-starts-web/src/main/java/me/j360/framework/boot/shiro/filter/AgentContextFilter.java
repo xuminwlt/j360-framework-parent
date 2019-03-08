@@ -30,10 +30,9 @@ public class AgentContextFilter extends PathMatchingFilter {
         if (Objects.nonNull(agent)) {
             if (Objects.nonNull(SessionContext.getBaseSessionUser())) {
                 SessionContext.getBaseSessionUser().setAgent(agent);
-                return true;
             }
         }
-        return false;
+        return true;
     }
 
 

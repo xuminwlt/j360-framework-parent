@@ -106,9 +106,6 @@ public class JwtSignature {
 
     public String getJwt(HttpServletRequest httpServletRequest) {
         String authorization = httpServletRequest.getHeader(Authorization);
-        if (StringUtils.isEmpty(authorization)) {
-            throw BizException.bizException.clone(DefaultErrorCode.AUTH_ACCESS_SESSION_ERROR);
-        }
         if(StringUtils.isEmpty(authorization) || ! authorization.startsWith("Bearer ")){
             throw BizException.bizException.clone(DefaultErrorCode.AUTH_ACCESS_SESSION_ERROR);
         }

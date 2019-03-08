@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+    <!-- 属性文件 -->
+    <springProperty scope="context" name="log.level" source="logging.level.root"/>
+    <springProperty scope="context" name="log.path" source="logging.path"/>
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </layout>
+    </appender>
+
+    <appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${log.path}/web.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${log.path}/web-%d{yyyy-MM-dd}.log</FileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印错误日志 -->
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </layout>
+    </appender>
+    <appender name="logfile-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${log.path}/web_error.log</File>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${log.path}/web_error-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>15</maxHistory>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印错误日志 -->
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <logger name="RocketmqClient" level="WARN" additivity="false" >
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="logfile"/>
+    </logger>
+    <logger name="RocketmqRemoting" level="WARN" additivity="false" >
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="logfile"/>
+    </logger>
+    <logger name="org.apache.rocketmq.*" level="WARN" additivity="false" >
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="logfile"/>
+    </logger>
+
+
+    <appender name="zipkin" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${log.path}/zipkin/zipkin.log</File>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${log.path}/zipkin/zipkin-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="brave.Tracer" level="info" additivity="false">
+        <appender-ref ref="zipkin"/>
+    </logger>
+
+    <root level="${log.level}">
+        <appender-ref ref="logfile"/>
+        <appender-ref ref="logfile-ERROR"/>
+        <appender-ref ref="stdout"/>
+    </root>
+</configuration>

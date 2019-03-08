@@ -12,9 +12,9 @@ import me.j360.framework.common.util.JwtUtil;
 import me.j360.framework.common.web.context.DefaultJwtSessionUser;
 import me.j360.framework.common.web.context.DefaultSessionUser;
 import me.j360.framework.common.web.context.SessionContext;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.subject.Subject;
-import org.apache.shiro.util.Assert;
 import org.apache.shiro.web.filter.AccessControlFilter;
 
 import javax.servlet.ServletRequest;
@@ -47,8 +47,9 @@ public class TokenAuthcFilter extends AccessControlFilter {
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
         String token = jwtSignature.getJwt((HttpServletRequest) request);
-
-        Assert.notNull(token);
+        if ( StringUtils.isEmpty(token)) {
+            throw new ServiceException(DefaultErrorCode.AUTH_ACCESS_SESSION_ERROR);
+        }
         JwtUtil.JwtOptions jwtOptions;
         try {
             jwtOptions = jwtSignature.decode(token);

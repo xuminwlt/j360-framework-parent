@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: j360-web
+  main:
+    web-application-type: SERVLET
+  profiles:
+    active: local
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/static/
+  redis:
+    host: 10.1.1.181
+    port: 16379
+    database: 0
+
+server:
+  address: 0.0.0.0
+  servlet:
+    context-path: /
+  port: 8080
+  tomcat:
+    max-connections: 10000
+
+logging:
+  config: classpath:logback-spring.xml
+  path: ./../logs
+  level:
+    root: INFO
+    org.springframework: INFO
+
+shiro:
+  issue: j360.me
+  secret: ODJnB/TpCPZWn6StKRMrx0PJRriIEoOimSm34eWttEBcVJBKHesNNO7epn8Ow2hYCA==

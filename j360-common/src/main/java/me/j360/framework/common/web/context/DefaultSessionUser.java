@@ -1,5 +1,6 @@
 package me.j360.framework.common.web.context;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 /**
@@ -11,6 +12,7 @@ import lombok.Data;
 @Data
 public class DefaultSessionUser extends BaseSessionUser {
 
+    @JsonIgnore
     protected NativeAgent agent;
 
     @Override
