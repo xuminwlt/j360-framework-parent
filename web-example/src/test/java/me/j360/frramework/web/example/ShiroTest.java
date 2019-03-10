@@ -1,22 +1,10 @@
 package me.j360.frramework.web.example;
 
 
-import me.j360.framework.boot.shiro.JwtSignature;
-import me.j360.framework.common.util.JwtUtil;
-import me.j360.framework.common.web.context.DefaultSessionUser;
-import me.j360.framework.web.example.BootstrapApplication;
-import me.j360.framework.web.example.configuration.RedissonSessionStorageDAO;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
-
 /**
  * @author: min_xu
  */
-@RunWith(SpringRunner.class)
+/*@RunWith(SpringRunner.class)
 @SpringBootTest(classes = {BootstrapApplication.class})
 @ActiveProfiles("local")
 public class ShiroTest {
@@ -58,4 +46,4 @@ public class ShiroTest {
         System.out.println(String.format("%s, %s, %s", sessionUser.getSessionId(), sessionUser.getUid(), sessionUser.getCid()));
         System.out.println("------------------");
     }
-}
+}*/
