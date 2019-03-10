@@ -63,6 +63,7 @@
 - j360-common: 通用类, 用于简化一方工程构建和优化程序, 定位三方依赖库
 - j360-boot-starts: TODO, 快速构建Spring Boot Configuration
 - j360-boot-starts-web: TODO, 进一步快速构建Spring Boot Web Configuration
+- example-web: Shiro Example(Shiro + jwt + redis)
  
 ## Samples
 

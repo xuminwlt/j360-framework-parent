@@ -21,7 +21,7 @@ public class ShiroRequestUtil {
             //因为iPhone里面有括号斜线，导致获取失败，用正则去掉（）及里面的内容
             clientAgentString = clientAgentString.replaceAll(" \\(.*?\\)", "");
             String userAgent[] = clientAgentString.split("/");
-            if (userAgent.length == 9) {
+            if (userAgent.length >= 7) {
                 NativeAgent clientAgent = new NativeAgent();
                 clientAgent.setAppid(userAgent[0]);
                 clientAgent.setApp_v(userAgent[1]);
@@ -30,8 +30,11 @@ public class ShiroRequestUtil {
                 clientAgent.setOs_v(userAgent[4]);
                 clientAgent.setC_model(userAgent[5]);
                 clientAgent.setCid(userAgent[6]);
-                clientAgent.setNet(userAgent[7]);
-                clientAgent.setChannel(userAgent[8]);
+                //兼容之前版本
+                if (userAgent.length > 7) {
+                    clientAgent.setNet(userAgent[7]);
+                    clientAgent.setChannel(userAgent[8]);
+                }
                 return clientAgent;
             }
         }
