@@ -8,6 +8,7 @@ import me.j360.framework.base.domain.rpc.result.DefaultPageResult;
 import me.j360.framework.base.domain.rpc.result.DefaultResult;
 import me.j360.framework.base.exception.RepositoryException;
 import me.j360.framework.base.exception.ServiceException;
+import me.j360.framework.common.exception.BizException;
 import me.j360.framework.core.kit.beanvalidator.BeanValidators;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -78,6 +79,12 @@ public abstract class AbstractServiceAspect {
             } else {
                 log.warn("{} failure:[{}]", methodName, getParamInfo(proceedingJoinPoint), e);
             }
+            if (Objects.equals(returnType.getSimpleName(), "DefaultPageResult")) {
+                return DefaultPageResult.fail(e.getExceptionCode(), e.getMessage());
+            }
+            return DefaultResult.fail(e.getExceptionCode(), e.getMessage());
+        } catch (BizException e) {
+            log.warn("{} failure:[{}]", methodName, getParamInfo(proceedingJoinPoint), e);
             if (Objects.equals(returnType.getSimpleName(), "DefaultPageResult")) {
                 return DefaultPageResult.fail(e.getExceptionCode(), e.getMessage());
             }
