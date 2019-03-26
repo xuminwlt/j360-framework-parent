@@ -39,6 +39,13 @@ public class DefaultExecutor  {
         return CompletableFuture.runAsync(runnable, executor);
     }
 
+    public static CompletableFuture<Void> runAsync2(Runnable runnable) {
+        return CompletableFuture.runAsync(runnable, executor).exceptionally(ex -> {
+            log.error("DefaultExecutor Exception.", ex);
+            return null;
+        });
+    }
+
     public static CompletableFuture<Void> runSafeAsync(Runnable runnable) {
         return CompletableFuture.runAsync(ThreadPoolUtil.safeRunnable(runnable), executor);
     }
