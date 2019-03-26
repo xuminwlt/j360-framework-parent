@@ -39,6 +39,9 @@ public class DefaultExecutor  {
         return CompletableFuture.runAsync(runnable, executor);
     }
 
+    public static CompletableFuture<Void> runSafeAsync(Runnable runnable) {
+        return CompletableFuture.runAsync(ThreadPoolUtil.safeRunnable(runnable), executor);
+    }
 
     //提交Runnable任务
     public static void execute(Runnable command) {
