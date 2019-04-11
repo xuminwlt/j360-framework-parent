@@ -7,9 +7,11 @@ import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
@@ -35,6 +37,9 @@ public class UserLoginSessionFilter extends AccessControlFilter {
 
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
+        if(((HttpServletRequest) request).getMethod().equals(RequestMethod.OPTIONS.name())){
+            return true;
+        }
         if (isLoginRequest(request, response)) {
             return true;
         } else {

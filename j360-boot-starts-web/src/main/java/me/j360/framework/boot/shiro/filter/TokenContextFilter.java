@@ -4,6 +4,7 @@ import me.j360.framework.boot.shiro.JwtSignature;
 import me.j360.framework.common.web.context.SessionContext;
 import org.apache.shiro.subject.support.DefaultSubjectContext;
 import org.apache.shiro.web.filter.PathMatchingFilter;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -24,6 +25,9 @@ public class TokenContextFilter extends PathMatchingFilter {
 
     @Override
     protected boolean onPreHandle(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
+        if(((HttpServletRequest) request).getMethod().equals(RequestMethod.OPTIONS.name())){
+            return true;
+        }
         //设置该请求为无状态请求
         request.setAttribute(DefaultSubjectContext.SESSION_CREATION_ENABLED, Boolean.FALSE);
         jwtSignature.getJwt((HttpServletRequest) request);
